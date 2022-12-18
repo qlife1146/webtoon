@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:webtoon/screens/home_screen.dart';
-import 'package:webtoon/services/api_service.dart';
 
 void main() {
-  ApiService().getTodaysToons();
   runApp(const App());
+  // SystemChrome.setEnabledSystemUIMode(
+  //   SystemUiMode.immersiveSticky,
+  // );
 }
 
 class App extends StatelessWidget {
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: HomeScreen(),
     );
   }

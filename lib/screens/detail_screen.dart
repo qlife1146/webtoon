@@ -165,27 +165,34 @@ class _DetailScreenState extends State<DetailScreen> {
                       child: Column(
                         children: [
                           for (var episode in snapshot.data!)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image(
-                                  image: NetworkImage(episode.thumb),
-                                  height: 40,
-                                ),
-                                SizedBox(
-                                  width: 240,
-                                  child: Text(
-                                    episode.title,
-                                    softWrap: true,
-                                    overflow: TextOverflow.fade,
-                                    maxLines: 2,
-                                    style: const TextStyle(
-                                      fontSize: 18,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              //#question
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 5),
+                                    child: Image(
+                                      image: NetworkImage(episode.thumb),
+                                      height: 40,
                                     ),
                                   ),
-                                ),
-                                const Icon(Icons.chevron_right),
-                              ],
+                                  SizedBox(
+                                    width: 240,
+                                    child: Text(
+                                      episode.title,
+                                      softWrap: true,
+                                      overflow: TextOverflow.fade,
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                  const Icon(Icons.chevron_right),
+                                ],
+                              ),
                             )
                         ],
                       ),

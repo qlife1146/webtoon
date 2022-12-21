@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webtoon/models/webtoon_detail_model.dart';
 import 'package:webtoon/models/webtoon_episode_model.dart';
 import 'package:webtoon/services/api_service.dart';
+import 'package:webtoon/widgets/episode_widget.dart';
 
 //직접 디자인. api에 작가는 없어서 제목으로 만족.
 
@@ -35,8 +36,15 @@ class _DetailScreenState extends State<DetailScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff2DB400),
+        foregroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite_outline_outlined),
+            onPressed: () {},
+          )
+        ],
         title: Text(
           widget.title,
           style: const TextStyle(
@@ -164,43 +172,14 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       child: Column(
                         children: [
-                          for (var episode in snapshot.data!)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              //#question
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 5),
-                                    child: Image(
-                                      image: NetworkImage(episode.thumb),
-                                      height: 40,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 240,
-                                    child: Text(
-                                      episode.title,
-                                      softWrap: true,
-                                      overflow: TextOverflow.fade,
-                                      maxLines: 2,
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                  const Icon(Icons.chevron_right),
-                                ],
-                              ),
-                            )
+                          for (var episode in snapshot.data!) Episode(episode: episode, webtoonId: widget.id),
                         ],
                       ),
                     );
                   }
                   return Container();
                 },
-              )
+              ),
             ],
           ),
         ),
